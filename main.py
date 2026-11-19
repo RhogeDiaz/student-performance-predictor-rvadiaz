@@ -3,6 +3,13 @@ import pandas as pd
 import joblib
 import seaborn as sns
 import numpy as np
+
+st.set_page_config(
+    page_title="Your App Name",
+    page_icon="my_thumbnail.png", 
+    layout="wide"
+)
+
 st.set_page_config(layout='wide')
 
 # import dataset
