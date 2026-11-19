@@ -88,11 +88,11 @@ sample = pd.DataFrame(
     }
 )
 
-# 3. Apply the saved scale transformations
+# Apply the saved scale transformations
 new_df_scaled = sample.copy()
 new_df_scaled[sample.columns] = scaler.transform(sample[sample.columns])
 
-# 4. Predict and output probabilities (confidence)
+# Prediction and confidence
 prediction = model.predict(new_df_scaled)
 confidence = model.predict_proba(new_df_scaled)
 
@@ -113,7 +113,6 @@ with output_col2.container(border=True):
     col2[0].write(f"#### Confidence: {confidence[0][1] if prediction == 1 else confidence[0][0]:.4f} ({(confidence[0][1] if prediction == 1 else confidence[0][0])*100:.2f}%)")
 
     col2[0].text("Consistent daily logins and consuming materials represent genuine engagement which is heavily correlated with a High rating. While delete actions and forum actions often have lower importance scores because they occur less frequently or do not directly reflect primary learning progression metrics to the same extent as logging in, taking quizzes, or reading content. (P.S. No AI were used in making this project  <3)", text_alignment="justify")
-    # We set the index to 'Feature' so Streamlit automatically labels the axis
     chart_data = importance_df.set_index('Feature')
     col2[1].write("### Model Feature Importance")
     col2[1].bar_chart(chart_data, horizontal=True, width="content")
